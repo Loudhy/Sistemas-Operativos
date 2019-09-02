@@ -105,11 +105,12 @@ int main(int argc, char *argv[]) {
     
     // @DanielGuzmanT code below
     // transmit message, wait for child to end, and print message
-    int num;
+    int num = 0;
     // first process to start messaging
     if (first_p == getpid()) {
         write(fd[1], &num, sizeof(num));
         read(fd[0], &num, sizeof(num));
+        wait(childpid);
         fprintf(stderr, "number: %d\n", num);
     }
     // other processes to continu messaging
