@@ -116,8 +116,8 @@ int main(int argc, char *argv[]) {
     }
     // other processes to continu messaging
     else {
-        read(fd[0], &num, sizeof(num));
         if (childpid != 0) waitpid(childpid, NULL, 0);
+        read(fd[0], &num, sizeof(num));
         num += 1;
         write(fd[1], &num, sizeof(num));
     }
