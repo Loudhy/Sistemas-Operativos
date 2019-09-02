@@ -72,13 +72,13 @@ int main(int argc, char *argv[]) {
         
         // creating the pipe
         if (pipe(fd)==-1) {
-            fprintf(stderr, "[%ld]: failed to create pipe %d:  %s\n", (long)getpid(), i, stderror(errno));
+            fprintf(stderr, "[%ld]: failed to create pipe %d:  %s\n", (long)getpid(), i, strerror(errno));
             return 1;
         }
 
         // creating the child process
         if ((childpid=fork()) == -1) {
-            fprintf(stderr, "[%ld]: failed to create child %d:  %s\n", (long)getpid(), i, stderror(errno));
+            fprintf(stderr, "[%ld]: failed to create child %d:  %s\n", (long)getpid(), i, strerror(errno));
             return 1;
         }
 
@@ -88,12 +88,12 @@ int main(int argc, char *argv[]) {
         else                error = dup2(fd[1], STDOUT_FILENO);
         
         if (error == -1) {
-            fprintf(stderr, "[%ld]: failed to dup pipes for iteration %d:  %s\n", (long)getpid(), i, stderror(errno));
+            fprintf(stderr, "[%ld]: failed to dup pipes for iteration %d:  %s\n", (long)getpid(), i, strerror(errno));
             return 1;
         }
 
         if (close(fd[0])==-1 || close(fd[1])==-1) {
-            fprintf(stderr, "[%ld]: failed to close extra descriptions %d:  %s\n", (long)getpid(), i, stderror(errno));
+            fprintf(stderr, "[%ld]: failed to close extra descriptions %d:  %s\n", (long)getpid(), i, strerror(errno));
             return 1;
         }
 
@@ -118,6 +118,6 @@ int main(int argc, char *argv[]) {
         num += 1;
         write(fd[1], &num, sizeof(num));
     }
-    
+
     return 0;
 }
