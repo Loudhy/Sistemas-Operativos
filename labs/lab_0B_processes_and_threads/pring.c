@@ -4,6 +4,7 @@
 #include <string.h>
 #include <unistd.h>
 #include <sys/types.h>
+#include <sys/wait.h>
 
 int main(int argc, char *argv[]) {
     pid_t childpid;     // indicates process should spawn another
@@ -110,7 +111,7 @@ int main(int argc, char *argv[]) {
     if (first_p == getpid()) {
         write(fd[1], &num, sizeof(num));
         read(fd[0], &num, sizeof(num));
-        wait(childpid);
+        wait(&childpid);
         fprintf(stderr, "number: %d\n", num);
     }
     // other processes to continu messaging
