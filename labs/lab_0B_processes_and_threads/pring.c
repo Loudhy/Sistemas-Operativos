@@ -110,8 +110,8 @@ int main(int argc, char *argv[]) {
     // first process to start messaging
     if (first_p == getpid()) {
         write(fd[1], &num, sizeof(num));
-        read(fd[0], &num, sizeof(num));
         wait(&childpid);
+        read(fd[0], &num, sizeof(num));
         fprintf(stderr, "number: %d\n", num);
     }
     // other processes to continu messaging
