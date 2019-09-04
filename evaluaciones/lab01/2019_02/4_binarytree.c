@@ -4,9 +4,6 @@
 #include <sys/types.h>
 #include <sys/wait.h>
 
-#define TRUE 1
-
-void bifurcate(int deep, int procn);
 
 int main(int argc, char const *argv[]) {
     if (argc != 2) {
@@ -14,35 +11,36 @@ int main(int argc, char const *argv[]) {
         exit(1);
     }
 
-    int deep = atoi(argv[1]);
-    bifurcate(deep, 1);
+    int deep, i, procn;
+    pid_t parent_pid, left_child, right_child;
 
-    while(TRUE) {
+    deep = atoi(argv[1]);
+    procn = 1;
+
+    for (i=1; i<=deep; ++i) {
+        parent_pid = getpid();
+        fprintf(stderr, "Soy el proceso %d [PID=%5.5ld]\n", procn, (long)getpid());
+        if (i == deep) break;
         
-    }
+        // left side
+        if ((left_child = fork()) == 0) {
+            procn = procn * 2;
+            waitpid(right_child, NULL, 0);
+        }
+
+        // right side, just parent can create the right child
+        if ((parent_pid==getpid()) && ((right_child=fork())==0)) {
+            procn = procn * 2 + 1;
+            waitpid(left_child, NULL, 0);
+        }
+
+        // parent code
+        if (parent_pid == getpid()) {
+            waitpid(left_child, NULL, 0);
+            waitpid(right_child, NULL, 0);
+            break;
+        }
+    }    
 
     return 0;
-}
-
-void bifurcate(int deep, int procn) {
-    
-    fprintf(stderr, "Soy el proceso %d [PID=%5.5d]\n", procn, (int)getpid());
-    if (deep == 1) return;
-
-    pid_t parent_pid=1, child_left=1, child_right=1;
-    parent_pid = getpid();
-
-    // left child code
-    if ((child_left=fork()) == 0) {
-        bifurcate(deep-1, procn*2);
-        exit(0);    
-    }
-    waitpid(-1, NULL, 0);
-
-    // right child code
-    if ((child_right=fork()) == 0) {
-        bifurcate(deep-1, procn*2+1);
-        exit(0);
-    }
-    waitpid(-1, NULL, 0);
 }
