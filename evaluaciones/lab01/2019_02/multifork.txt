@@ -1,0 +1,33 @@
+PID INDUK****** pid(13373) **************
+val1(00000) -- val2(00000) -- val3(00000) [PID: 13376]
+val1(00000) -- val2(00000) -- val3(13376) [PID: 13375]
+val1(00000) -- val2(13375) -- val3(00000) [PID: 13377]
+val1(00000) -- val2(13375) -- val3(13377) [PID: 13374]
+val1(13374) -- val2(00000) -- val3(00000) [PID: 13379]
+val1(13374) -- val2(00000) -- val3(13379) [PID: 13378]
+val1(13374) -- val2(13378) -- val3(00000) [PID: 13380]
+val1(13374) -- val2(13378) -- val3(13380) [PID: 13373]
+
+=========================================
+    ÁRBOL DE PROCESOS DE MULTIFORK.C
+=========================================
+
+13373 ──┬── 13374 ──── 13375 ──── 13376
+        │          └── 13377
+        ├── 13378 ──── 13379
+        └── 13380
+
+Para que se pueda crear este árbol de procesos, algunos
+tubieron que morir para permitir a su padre poder crear
+a otros.
+
+Los valores impresos en el primer bloque representan los
+pids de los procesos anteriores que ya han terminado:
+
+El proceso PID=13376 no posee ningún valor, porque ha sido
+el primer proceso en terminar, y ha permitido al proceso
+PID=13375 continuar, y además este tiene el pid de su hijo
+ya muerto(PID=13376).
+
+Cabe recalcar que dichos valores han sido heredados de sus
+padres, los cuales han visto morir a sus hijos. Sad.
