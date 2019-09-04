@@ -1,0 +1,37 @@
+Result = 003 [PID=14407, PPID=14406]
+Result = 002 [PID=14406, PPID=14405]
+Result = 002 [PID=14408, PPID=14405]
+Result = 001 [PID=14405, PPID=14404]
+Result = 002 [PID=14410, PPID=14409]
+Result = 001 [PID=14409, PPID=14404]
+Result = 001 [PID=14411, PPID=14404]
+Result = 000 [PID=14404, PPID=10110]
+
+
+=========================================
+    ÁRBOL DE PROCESOS DE ISENGFORK.C
+=========================================
+
+14404(000) ──┬── 14405(001) ──── 14406(002) ──── 14407(003)
+             │               └── 14408(002)
+             ├── 14409(001) ──── 14410(002)
+             └── 14411(001)
+
+La creación de los procesos es la misma de multifork.c y ya
+ha sido explicada.
+
+Solo los hijos de un proceso pueden aumentar su contador,
+por lo que el primer proceso no podrá hacerlo e imprimirá
+de último.
+
+Aquellos que son hijos de procesos hijos tendrán un contador
+con un valor más elevado igual al número de procesos que son
+considerados hijos dentro de su linaje:
+
+14404(000) ───── 14405(001) ──── 14406(002) ──── 14407(003)
+
+14404(000) ───── 14405(001) ──── 14408(002)
+
+14404(000) ───── 14409(001) ──── 14410(002)
+
+14404(000) ───── 14411(001)
