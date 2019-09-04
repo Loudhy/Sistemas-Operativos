@@ -67,6 +67,7 @@ int main(int argc, char *argv[]) {
 
    // @DanielGuzmanT code
    pid_t first_p = getpid();
+   // @end
 
    // create the remaining processes
    for (i=1; i<nprocs; i++) {
@@ -114,13 +115,14 @@ int main(int argc, char *argv[]) {
         read(fd[0], &num, sizeof(num));
         fprintf(stderr, "number: %d\n", num);
     }
-    // other processes to continu messaging
+    // other processes to continue messaging
     else {
         if (childpid != 0) waitpid(childpid, NULL, 0);
         read(fd[0], &num, sizeof(num));
         num += 1;
         write(fd[1], &num, sizeof(num));
     }
+    // @end
 
     return 0;
 }
