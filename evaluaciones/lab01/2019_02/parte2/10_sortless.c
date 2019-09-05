@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <unistd.h>
+#include <stdlib.h>
 #include <sys/types.h>
 #include <sys/wait.h>
 
@@ -10,7 +11,7 @@
 
 int main(int argc, char const *argv[]) {
     pid_t child;
-    int fds[2][2];    
+    int fds[2][2], error;    
 
     // parent waits childs dead
     if ((child=fork())!=0) waitpid(child, NULL, 0);    
@@ -24,7 +25,9 @@ int main(int argc, char const *argv[]) {
             close(fds[P1][TOWRITE]);
             close(fds[P1][TOREAD]);
 
-            execv("ps", NULL);
+            error = execl("/bin/ps", "/bin/ps", NULL);
+            fprintf(stderr, "[ERROR]: cannot execute execl() in ps process (error=%d)\n", error);
+            exit(error);
         }
 
         // sort process will inherit stdin from pipe 1
@@ -40,7 +43,8 @@ int main(int argc, char const *argv[]) {
             close(fds[P2][TOWRITE]);
             close(fds[P2][TOREAD]);
 
-            execv("sort", NULL);
+            error = execl("/bin/sort", "/bin/sort", NULL);
+            fprintf(stderr, "[ERROR]: cannot execute execl() in sort process (error=%d)\n", error);
         }
 
         // less process will adopt stdin from pipe 2
@@ -49,7 +53,8 @@ int main(int argc, char const *argv[]) {
         close(fds[P2][TOWRITE]);
 
         // less
-        execv("less", NULL);
+        error = execl("/bin/less", "/bin/less", NULL);
+        fprintf(stderr, "[ERROR]: cannot execute execl() in less process (error=%d)\n", error);
     }
 
     return 0;
