@@ -25,15 +25,18 @@ int main(void) {
     }
 
     // leaf children, go to sleep enough to wait for the rest leaf children
-    if (nchilds == 0) sleep(2);
+    if (nchilds == 0) sleep(4);
 
+    // grand parent sleeps(enough to wait for all children) and then takes the picture
+    if (grand_pa == getpid()) {
+        sleep(2);
+        sprintf(command, "pstree -p %ld", (long)grand_pa);
+        system(command);
+    }
+    
     // parents waiting for all their children
     for (i=1; i<=nchilds; ++i) wait(NULL);
 
-
-    sprintf(command, "pstree -p %ld", grand_pa);
-    system(command);
-
-    printf("PID[%3.3d]\n", getpid());
+    printf("PID[%3.3d] (nchilds=%d)\n", getpid(), nchilds);
     exit(0);
 }
