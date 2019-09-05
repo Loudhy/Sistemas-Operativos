@@ -43,7 +43,7 @@ int main(int argc, char const *argv[]) {
             close(fds[P2][TOWRITE]);
             close(fds[P2][TOREAD]);
 
-            error = execl("/bin/sort", "/bin/sort", NULL);
+            error = execl("/bin/sort", "/usr/bin/sort", NULL);
             fprintf(stderr, "[ERROR]: cannot execute execl() in sort process (error=%d)\n", error);
         }
 
@@ -53,7 +53,7 @@ int main(int argc, char const *argv[]) {
         close(fds[P2][TOWRITE]);
 
         // less
-        error = execl("/bin/less", "/bin/less", NULL);
+        error = execl("/usr/bin/less", "/bin/less", NULL);
         fprintf(stderr, "[ERROR]: cannot execute execl() in less process (error=%d)\n", error);
     }
 
