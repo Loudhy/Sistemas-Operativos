@@ -26,24 +26,26 @@ int main(int argc, char const *argv[]) {
         // left code
         if ((pid_left=fork()) == 0) {
             procn = procn * 2;
+            sleep(procn);
             fprintf(stderr, "Soy el proceso %d [PID=%ld -- PPID=%ld]\n", procn, (long)getpid(), (long)getppid());
-            waitpid(pid_left, NULL, 0);
         }
 
         // right code
         if ((pid_parent==getpid()) && (pid_right=fork()) == 0) {
             procn = procn * 2 + 1;
+            sleep(procn);
             fprintf(stderr, "Soy el proceso %d [PID=%ld -- PPID=%ld]\n", procn, (long)getpid(), (long)getppid());
-            continue;
-            // waitpid(pid_left, NULL, 0);
         }
 
         // parent code
         if (pid_parent == getpid()) {
+            waitpid(pid_left, NULL, 0);
             waitpid(pid_right, NULL, 0);
             break;
         }
     }
+
+    
 
     return 0;
 }
