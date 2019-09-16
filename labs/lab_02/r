@@ -1,0 +1,104 @@
+F   UID   PID  PPID PRI  NI    VSZ   RSS WCHAN  STAT TTY        TIME COMMAND
+4  1000  2905     1  20   0  77212  8272 ep_pol Ss   ?          0:00 /lib/systemd/systemd --user
+5  1000  2906  2905  20   0 261656  2764 -      S    ?          0:00 (sd-pam)
+1  1000  2919     1  20   0 509920  8356 -      Sl   ?          0:00 /usr/bin/gnome-keyring-daemon --daemonize --login
+4  1000  2923  2900  20   0 212300  6120 poll_s Ssl+ tty2       0:00 /usr/lib/gdm3/gdm-x-session --run-script env GNOME_SHELL_SESSION_MODE=ubuntu gnome-session --session=ubuntu
+4  1000  2925  2923  20   0 522576 67600 ep_pol Sl+  tty2       2:22 /usr/lib/xorg/Xorg vt2 -displayfd 3 -auth /run/user/1000/gdm/Xauthority -background none -noreset -keeptty -verbose 3
+0  1000  2933  2905  20   0  51116  5472 ep_pol Ss   ?          0:00 /usr/bin/dbus-daemon --session --address=systemd: --nofork --nopidfile --systemd-activation --syslog-only
+0  1000  2936  2923  20   0 569260 15900 poll_s Sl+  tty2       0:00 /usr/lib/gnome-session/gnome-session-binary --session=ubuntu
+1  1000  3040  2936  20   0  11304   320 -      Ss   ?          0:00 /usr/bin/ssh-agent /usr/bin/im-launch env GNOME_SHELL_SESSION_MODE=ubuntu gnome-session --session=ubuntu
+0  1000  3043  2905  20   0 349448  6412 poll_s Ssl  ?          0:00 /usr/lib/at-spi2-core/at-spi-bus-launcher
+0  1000  3048  3043  20   0  50056  4332 ep_pol S    ?          0:00 /usr/bin/dbus-daemon --config-file=/usr/share/defaults/at-spi2/accessibility.conf --nofork --print-address 3
+0  1000  3050  2905  20   0 220788  6880 poll_s Sl   ?          0:00 /usr/lib/at-spi2-core/at-spi2-registryd --use-gnome-session
+0  1000  3064  2905  20   0 292168  7276 poll_s Ssl  ?          0:00 /usr/lib/gvfs/gvfsd
+0  1000  3069  2905  20   0 416116  5384 futex_ Sl   ?          0:00 /usr/lib/gvfs/gvfsd-fuse /run/user/1000/gvfs -f -o big_writes
+0  1000  3087  2936  20   0 4323360 241964 poll_s Sl+ tty2      3:38 /usr/bin/gnome-shell
+1  1000  3097     1   9 -11 1959292 15164 poll_s S<l ?          6:04 /usr/bin/pulseaudio --start --log-target=syslog
+0  1000  3117  3087  20   0 362192  8656 poll_s Sl   tty2       0:14 ibus-daemon --xim --panel disable
+0  1000  3121  3117  20   0 281072  6900 poll_s Sl   tty2       0:00 /usr/lib/ibus/ibus-dconf
+0  1000  3123     1  20   0 344780 21496 poll_s Sl   tty2       0:00 /usr/lib/ibus/ibus-x11 --kill-daemon
+0  1000  3125  2905  20   0 278992  6236 poll_s Sl   ?          0:00 /usr/lib/ibus/ibus-portal
+0  1000  3126  2905  20   0 271864  4964 poll_s Ssl  ?          0:00 /usr/libexec/xdg-permission-store
+0  1000  3140  2905  20   0 689900 20944 poll_s Sl   ?          0:00 /usr/lib/gnome-shell/gnome-shell-calendar-server
+0  1000  3156  2905  20   0 306960  9324 poll_s Ssl  ?          0:00 /usr/lib/gvfs/gvfs-udisks2-volume-monitor
+0  1000  3161  2905  20   0 274244  6088 poll_s Ssl  ?          0:00 /usr/lib/gvfs/gvfs-goa-volume-monitor
+0  1000  3165  2905  20   0 776652 31400 poll_s Sl   ?          0:00 /usr/lib/gnome-online-accounts/goa-daemon
+0  1000  3169  2905  20   0 692812 25624 poll_s Ssl  ?          0:00 /usr/lib/evolution/evolution-source-registry
+0  1000  3190  2905  20   0 303804  8024 poll_s Sl   ?          0:01 /usr/lib/gnome-online-accounts/goa-identity-service
+0  1000  3195  2905  20   0 288828  6804 poll_s Ssl  ?          0:00 /usr/lib/gvfs/gvfs-gphoto2-volume-monitor
+0  1000  3199  2905  20   0 379012  7716 poll_s Ssl  ?          0:00 /usr/lib/gvfs/gvfs-afc-volume-monitor
+0  1000  3204  2905  20   0 276040  6160 poll_s Ssl  ?          0:00 /usr/lib/gvfs/gvfs-mtp-volume-monitor
+0  1000  3214  2936  20   0 591780 23016 poll_s Sl+  tty2       0:00 /usr/lib/gnome-settings-daemon/gsd-power
+0  1000  3216  2936  20   0 349692 10336 poll_s Sl+  tty2       0:00 /usr/lib/gnome-settings-daemon/gsd-print-notifications
+0  1000  3217  2936  20   0 423556  5964 poll_s Sl+  tty2       0:00 /usr/lib/gnome-settings-daemon/gsd-rfkill
+0  1000  3218  2936  20   0 275944  5888 poll_s Sl+  tty2       0:00 /usr/lib/gnome-settings-daemon/gsd-screensaver-proxy
+0  1000  3220  2936  20   0 453476 10200 poll_s Sl+  tty2       0:00 /usr/lib/gnome-settings-daemon/gsd-sharing
+0  1000  3222  2936  20   0 378444  8432 poll_s Sl+  tty2       0:00 /usr/lib/gnome-settings-daemon/gsd-smartcard
+0  1000  3226  2936  20   0 333360  8268 poll_s Sl+  tty2       0:00 /usr/lib/gnome-settings-daemon/gsd-sound
+0  1000  3229  2936  20   0 495536 22956 poll_s Sl+  tty2       0:00 /usr/lib/gnome-settings-daemon/gsd-xsettings
+0  1000  3239  2936  20   0 429296 21784 poll_s Sl+  tty2       0:00 /usr/lib/gnome-settings-daemon/gsd-wacom
+0  1000  3245  2936  20   0 278664  5984 poll_s Sl+  tty2       0:00 /usr/lib/gnome-settings-daemon/gsd-a11y-settings
+0  1000  3248  2936  20   0 669060 24020 poll_s Sl+  tty2       0:00 /usr/lib/gnome-settings-daemon/gsd-color
+0  1000  3250  2936  20   0 344304 20800 poll_s Sl+  tty2       0:00 /usr/lib/gnome-settings-daemon/gsd-clipboard
+0  1000  3256  2936  20   0 365076  7536 poll_s Sl+  tty2       0:00 /usr/lib/gnome-settings-daemon/gsd-housekeeping
+0  1000  3258  2936  20   0 470236 13780 poll_s Sl+  tty2       0:00 /usr/lib/gnome-settings-daemon/gsd-datetime
+0  1000  3262  2936  20   0 941148 24064 poll_s Sl+  tty2       0:00 /usr/lib/gnome-settings-daemon/gsd-media-keys
+0  1000  3265  2936  20   0 507424 21904 poll_s Sl+  tty2       0:00 /usr/lib/gnome-settings-daemon/gsd-keyboard
+0  1000  3268  2936  20   0 278672  6008 poll_s Sl+  tty2       0:00 /usr/lib/gnome-settings-daemon/gsd-mouse
+0  1000  3291     1  20   0 508972 12516 poll_s Sl+  tty2       0:00 /usr/lib/gnome-settings-daemon/gsd-printer
+0  1000  3308  2936  20   0 271936  6708 poll_s Sl+  tty2       0:00 /usr/lib/gnome-disk-utility/gsd-disk-utility-notify
+0  1000  3316  2936  20   0 374012  8384 poll_s Sl+  tty2       0:00 /usr/lib/x86_64-linux-gnu/indicator-messages/indicator-messages-service
+0  1000  3320  2936  20   0 1185056 52860 poll_s Sl+ tty2       0:02 nautilus-desktop
+0  1000  3342  2905  20   0 188288  5556 poll_s Sl   ?          0:00 /usr/lib/dconf/dconf-service
+0  1000  3346  2905  20   0 892656 67584 poll_s Ssl  ?          0:00 /usr/lib/evolution/evolution-calendar-factory
+0  1000  3368  3117  20   0 205192  6892 poll_s Sl   tty2       0:04 /usr/lib/ibus/ibus-engine-simple
+0  1000  3373  3064  20   0 368580  7920 poll_s Sl   ?          0:00 /usr/lib/gvfs/gvfsd-trash --spawner :1.22 /org/gtk/gvfs/exec_spaw/0
+0  1000  3404  3346  20   0 1136460 62640 poll_s Sl  ?          0:00 /usr/lib/evolution/evolution-calendar-factory-subprocess --factory all --bus-name org.gnome.evolution.dataserver.Subprocess.Backend.Calendarx3346x2 --own-path /org/gnome/evolution/dataserver/Subprocess/Backend/Calendar/3346/2
+0  1000  3413  2905  20   0 733244 24800 poll_s Ssl  ?          0:00 /usr/lib/evolution/evolution-addressbook-factory
+0  1000  3426  3413  20   0 944092 27872 poll_s Sl   ?          0:00 /usr/lib/evolution/evolution-addressbook-factory-subprocess --factory all --bus-name org.gnome.evolution.dataserver.Subprocess.Backend.AddressBookx3413x2 --own-path /org/gnome/evolution/dataserver/Subprocess/Backend/AddressBook/3413/2
+0  1000  3441  2905  20   0 207020  8172 poll_s Ssl  ?          0:00 /usr/lib/gvfs/gvfsd-metadata
+0  1000  3453  2936  20   0 2996424 160064 poll_s Sl+ tty2      0:03 usr/share/jetbrains-toolbox/jetbrains-toolbox --minimize
+1  1000  3458     1  20   0  22516  2580 wait_i Ssl  ?          0:03 /home/jhair/.local/share/JetBrains/Toolbox/bin/jetbrains-toolbox --minimize
+0  1000  3490  3453  20   0 299052 38448 poll_s S+   tty2       0:00 /tmp/.mount_jetbrahU7rGy/usr/share/jetbrains-toolbox/jetbrains-toolbox-helper --type=zygote --no-sandbox --log-file=/home/jhair/.local/share/JetBrains/Toolbox/logs/cef.log --resources-dir-path=/tmp/.mount_jetbrahU7rGy/usr/share/jetbrains-toolbox --lang=en-US
+0  1000  3500  3453  20   0 882884 68288 poll_s Sl+  tty2       0:00 /tmp/.mount_jetbrahU7rGy/usr/share/jetbrains-toolbox/jetbrains-toolbox-helper --type=gpu-process --field-trial-handle=1655303108080707324,4547813567719636491,131072 --disable-features=NetworkService --no-sandbox --log-file=/home/jhair/.local/share/JetBrains/Toolbox/logs/cef.log --resources-dir-path=/tmp/.mount_jetbrahU7rGy/usr/share/jetbrains-toolbox --lang=en-US --gpu-preferences=KAAAAAAAAAAgAAAgAQAAAAAAAAAAAGAAAAAAAAAAAAAIAAAAAAAAAAgAAAAAAAAA --log-file=/home/jhair/.local/share/JetBrains/Toolbox/logs/cef.log --service-request-channel-token=5837394003987341707
+1  1000  3507  3490  20   0 1674540 117536 futex_ Sl+ tty2      0:01 /tmp/.mount_jetbrahU7rGy/usr/share/jetbrains-toolbox/jetbrains-toolbox-helper --type=renderer --no-sandbox --log-file=/home/jhair/.local/share/JetBrains/Toolbox/logs/cef.log --field-trial-handle=1655303108080707324,4547813567719636491,131072 --disable-features=NetworkService --lang=en-US --log-file=/home/jhair/.local/share/JetBrains/Toolbox/logs/cef.log --resources-dir-path=/tmp/.mount_jetbrahU7rGy/usr/share/jetbrains-toolbox --disable-extensions --disable-plugins --uncaught-exception-stack-size=16 --num-raster-threads=4 --enable-main-frame-before-activation --service-request-channel-token=14848604538227527907 --renderer-client-id=3 --shared-files=v8_context_snapshot_data:100,v8_natives_data:101
+0  1000  3545  2936  20   0 1064920 16192 poll_s Sl+ tty2       0:00 zeitgeist-datahub
+0  1000  3563  2905  20   0 433888  9108 poll_s Ssl  ?          0:00 /usr/bin/zeitgeist-daemon
+0  1000  3589  2905  20   0 326760 16076 poll_s Ssl  ?          0:00 /usr/lib/zeitgeist/zeitgeist/zeitgeist-fts
+4  1000  3635     1  20   0 3588568 360828 poll_s Sl+ tty2     13:00 /usr/lib/firefox/firefox -new-window
+0  1000  3685  2936  20   0 595044 25872 poll_s Sl+  tty2       0:00 update-notifier
+0  1000  3688  2936  20   0 1408700 180820 poll_s SLl+ tty2     0:05 /usr/bin/gnome-software --gapplication-service
+4  1000  3733  3635  20   0 3011480 282296 poll_s Sl+ tty2      0:17 /usr/lib/firefox/firefox -contentproc -childID 1 -isForBrowser -prefsLen 1 -prefMapSize 204799 -parentBuildID 20190828152820 -greomni /usr/lib/firefox/omni.ja -appomni /usr/lib/firefox/browser/omni.ja -appdir /usr/lib/firefox/browser 3635 true tab
+4  1000  3774  3635  20   0 3278608 460188 poll_s Sl+ tty2      8:10 /usr/lib/firefox/firefox -contentproc -childID 2 -isForBrowser -prefsLen 242 -prefMapSize 204799 -parentBuildID 20190828152820 -greomni /usr/lib/firefox/omni.ja -appomni /usr/lib/firefox/browser/omni.ja -appdir /usr/lib/firefox/browser 3635 true tab
+4  1000  3819  3635  20   0 3004080 290908 poll_s Sl+ tty2      1:06 /usr/lib/firefox/firefox -contentproc -childID 3 -isForBrowser -prefsLen 6095 -prefMapSize 204799 -parentBuildID 20190828152820 -greomni /usr/lib/firefox/omni.ja -appomni /usr/lib/firefox/browser/omni.ja -appdir /usr/lib/firefox/browser 3635 true tab
+4  1000  3974     1  20   0 679712 59084 -      Rl+  tty2       4:57 /usr/bin/python /usr/bin/x-terminal-emulator
+4  1000  3986  3635  20   0 2663640 174980 poll_s Sl+ tty2      0:17 /usr/lib/firefox/firefox -contentproc -childID 4 -isForBrowser -prefsLen 7478 -prefMapSize 204799 -parentBuildID 20190828152820 -greomni /usr/lib/firefox/omni.ja -appomni /usr/lib/firefox/browser/omni.ja -appdir /usr/lib/firefox/browser 3635 true tab
+0  1000  4041  3974  20   0  30384  6020 poll_s Ss+  pts/0      0:00 /bin/bash
+4  1000  4051  3635  20   0 3435712 584196 poll_s Sl+ tty2      8:33 /usr/lib/firefox/firefox -contentproc -childID 5 -isForBrowser -prefsLen 7907 -prefMapSize 204799 -parentBuildID 20190828152820 -greomni /usr/lib/firefox/omni.ja -appomni /usr/lib/firefox/browser/omni.ja -appdir /usr/lib/firefox/browser 3635 true tab
+4  1000  4093  3635  20   0 2935476 229888 poll_s Sl+ tty2      0:17 /usr/lib/firefox/firefox -contentproc -childID 6 -isForBrowser -prefsLen 7907 -prefMapSize 204799 -parentBuildID 20190828152820 -greomni /usr/lib/firefox/omni.ja -appomni /usr/lib/firefox/browser/omni.ja -appdir /usr/lib/firefox/browser 3635 true tab
+4  1000  4137  3635  20   0 2894840 247904 poll_s Sl+ tty2      4:45 /usr/lib/firefox/firefox -contentproc -childID 7 -isForBrowser -prefsLen 7916 -prefMapSize 204799 -parentBuildID 20190828152820 -greomni /usr/lib/firefox/omni.ja -appomni /usr/lib/firefox/browser/omni.ja -appdir /usr/lib/firefox/browser 3635 true tab
+4  1000  4170  3635  20   0 2673536 175796 poll_s Sl+ tty2      0:08 /usr/lib/firefox/firefox -contentproc -childID 8 -isForBrowser -prefsLen 7916 -prefMapSize 204799 -parentBuildID 20190828152820 -greomni /usr/lib/firefox/omni.ja -appomni /usr/lib/firefox/browser/omni.ja -appdir /usr/lib/firefox/browser 3635 true tab
+4  1000  4211  3635  20   0 2625056 138148 poll_s Sl+ tty2      0:04 /usr/lib/firefox/firefox -contentproc -childID 9 -isForBrowser -prefsLen 7894 -prefMapSize 204799 -parentBuildID 20190828152820 -greomni /usr/lib/firefox/omni.ja -appomni /usr/lib/firefox/browser/omni.ja -appdir /usr/lib/firefox/browser 3635 true tab
+0  1000  4259  2936  20   0 790024 32320 poll_s Sl+  tty2       0:00 /usr/lib/deja-dup/deja-dup-monitor
+4  1000  4427  3635  20   0 431220 38404 poll_s Sl+  tty2       0:43 /usr/lib/firefox/firefox -contentproc -parentBuildID 20190828152820 -prefsLen 7965 -prefMapSize 204799 -greomni /usr/lib/firefox/omni.ja -appomni /usr/lib/firefox/browser/omni.ja -appdir /usr/lib/firefox/browser 3635 true rdd
+0  1000  4521  2905  20   0 1578756 53500 poll_s Sl  ?          0:03 /usr/bin/nautilus --gapplication-service
+0  1000  4827  2919  20   0  11304  1528 -      S    ?          0:00 /usr/bin/ssh-agent -D -a /run/user/1000/keyring/.ssh
+0  1000  4910     1  20   0 1257124 137240 poll_s Ssl ?         1:04 /usr/share/code/code .
+0  1000  4912  4910  20   0 376020 38176 poll_s S    ?          0:00 /usr/share/code/code --type=zygote --no-sandbox
+0  1000  4937  4910  20   0 520500 72328 poll_s Sl   ?          1:02 /usr/share/code/code --type=gpu-process --enable-features=SharedArrayBuffer --disable-features=SpareRendererForSitePerProcess --disable-color-correct-rendering --no-sandbox --gpu-prefer AAAAAAAAACAAABAAQAAAAAAAAAAAGAAAAAAAAAAAAAIAAAAAAAAAAgAAAAAAAAA --service-request-channel-token=5515993346375000349
+1  1000  4952  4912  20   0 1051800 265996 futex_ Sl ?          3:51 /usr/share/code/code --type=renderer --disable-color-correct-rendering --no-sandbox --enable-features=SharedArrayBuffer --disable-features=SpareRendererForSitePerProcess --service-pipe-token=5504233506647842479 --lang=es-419 --app-path=/usr/share/code/resources/app --user-agent=Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Code/1.37.1 Chrome/69.0.3497.128 Electron/4.2.7 Safari/537.36 --node-integration=true --webview-tag=true --no-sandbox --background-color=#282c34 --num-raster-threads=4 --enable-main-frame-before-activation --service-request-channel-token=5504233506647842479 --renderer-client-id=4 --shared-files=v8_context_snapshot_data:100,v8_natives_data:101
+1  1000  4973  4912  20   0 907436 104712 futex_ Sl  ?          0:11 /usr/share/code/code --type=renderer --disable-color-correct-rendering --no-sandbox --enable-features=SharedArrayBuffer --disable-features=SpareRendererForSitePerProcess --service-pipe-token=10028861284913474849 --lang=es-419 --app-path=/usr/share/code/resources/app --user-agent=Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Code/1.37.1 Chrome/69.0.3497.128 Electron/4.2.7 Safari/537.36 --node-integration=true --webview-tag=true --no-sandbox --background-color=#282c34 --disable-blink-features=Auxclick --num-raster-threads=4 --enable-main-frame-before-activation --service-request-channel-token=10028861284913474849 --renderer-client-id=6 --shared-files=v8_context_snapshot_data:100,v8_natives_data:101
+0  1000  5027  4952  20   0 876560 216184 ep_pol Sl  ?          1:00 /usr/share/code/code --nolazy --inspect=49424 /usr/share/code/resources/app/out/bootstrap-fork --type=extensionHost
+0  1000  5028  4952  20   0 601128 71344 -      Rl   ?          0:01 /usr/share/code/code /usr/share/code/resources/app/out/bootstrap-fork --type=watcherService
+0  1000  5063  4952  20   0 597032 64152 ep_pol Sl   ?          0:00 /usr/share/code/code /usr/share/code/resources/app/out/bootstrap-fork --type=searchService
+0  1000  5160  3064  20   0 370872  8024 poll_s Sl   ?          0:00 /usr/lib/gvfs/gvfsd-network --spawner :1.22 /org/gtk/gvfs/exec_spaw/1
+0  1000  5171  3064  20   0 774936 18488 poll_s Sl   ?          0:00 /usr/lib/gvfs/gvfsd-smb-browse --spawner :1.22 /org/gtk/gvfs/exec_spaw/3
+0  1000  5189  3064  20   0 381488  7568 poll_s Sl   ?          0:00 /usr/lib/gvfs/gvfsd-dnssd --spawner :1.22 /org/gtk/gvfs/exec_spaw/5
+0  1000  5203  5027  20   0 1456896 38728 unix_s Sl  ?          0:13 /home/jhair/.vscode/extensions/ms-vscode.cpptools-0.25.1/bin/Microsoft.VSCode.CPP.Extension.linux
+0  1000  5438  5027  20   0 587288 80132 ep_pol Sl   ?          0:01 /usr/share/code/code /usr/share/code/resources/app/extensions/json-language-features/server/dist/jsonServerMain --node-ipc --clientProcessId=5027
+0  1000  7520  4041  20   0   4508   788 -      R    pts/0      4:39 ./server.out
+0  1000  7531  3974  20   0  30268  5748 wait   Ss   pts/1      0:00 /bin/bash
+0  1000  7690  5203  20   0 4966424 13500 futex_ Sl  ?          0:00 /home/jhair/.vscode/extensions/ms-vscode.cpptools-0.25.1/bin/Microsoft.VSCode.CPP.IntelliSense.Msvc.linux 5203 9
+4  1000  7753  7531  20   0  36096  1500 -      R+   pts/1      0:00 ps lx
+0  1000  7754  7531  20   0  14884   824 pipe_w S+   pts/1      0:00 tee r
+0  1000  7755  7531  20   0  21536  1008 pipe_w S+   pts/1      0:00 grep --color=auto server.out
