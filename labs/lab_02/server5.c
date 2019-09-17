@@ -9,7 +9,7 @@
 
 #define TRUE    1
 
-void sendCode(char* code);
+void sendCode(int fd);
 
 int main() {
     int server_sockfd, client_sockfd;
@@ -75,7 +75,6 @@ int main() {
                 // previous examples
                 else {
                     ioctl(fd, FIONREAD, &nread);
-
                     if (nread == 0) {
                         close(fd);
                         FD_CLR(fd, &readfds);
@@ -83,12 +82,9 @@ int main() {
                     }
                     else {
                         read(fd, &ch, 1);
-                        sleep(5);
-                        printf("serving client on fd %d\n", fd);
-                        
-                        sendCode(message);
-
-                        write(fd, message, sizeof(message));
+                        sleep(1);
+                        printf("serving client on fd %d\n", fd);                        
+                        sendCode(fd);
                     }
                 }
             }
@@ -96,6 +92,13 @@ int main() {
     }
 }
 
-void sendCode(char* message) {
+void sendCode(int fd) {
+    char cadena[1000];
+    FILE* file = popen("cat server4.c", "r");
     
+    while(fgets(cadena, sizeof(cadena), file) != NULL) {
+        write(fd, cadena, sizeof(cadena));
+    }
+
+    write(fd, "FIN", sizeof("FIN"));
 }
