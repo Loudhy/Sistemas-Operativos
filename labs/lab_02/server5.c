@@ -9,11 +9,15 @@
 
 #define TRUE    1
 
+void sendCode(char* code);
+
 int main() {
     int server_sockfd, client_sockfd;
     int server_len, client_len;
     struct sockaddr_in server_address;
     struct sockaddr_in client_address;
+
+    char message[2000];
 
     int result;
     fd_set readfds, testfds;
@@ -75,17 +79,23 @@ int main() {
                     if (nread == 0) {
                         close(fd);
                         FD_CLR(fd, &readfds);
-                        printf("removing clinet on fd %d\n", fd);
+                        printf("removing client on fd %d\n", fd);
                     }
                     else {
                         read(fd, &ch, 1);
                         sleep(5);
                         printf("serving client on fd %d\n", fd);
-                        ch++;
-                        write(fd, &ch, 1);
+                        
+                        sendCode(message);
+
+                        write(fd, message, sizeof(message));
                     }
                 }
             }
         }
     }
+}
+
+void sendCode(char* message) {
+    
 }
