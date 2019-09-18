@@ -6,7 +6,6 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include <sys/time.h>
-#include <string.h>
 
 #define TRUE        1
 #define QUEUE_SIZE  5
@@ -14,7 +13,6 @@
 void acceptClient(int fd);
 void deleteClient(int fd);
 void attendClient(int fd);
-void divisorsOf(int number, int* divisors, int* count);
 
 int server_sockfd, client_sockfd;
 int server_len, client_len;
@@ -47,9 +45,8 @@ int main() {
     
         for (fd=0; fd<FD_SETSIZE; fd++) {
             // if not fd in set, avoid proccessing it
-            // printf("fd=%d\n", fd);
             if (!FD_ISSET(fd, &testfds)) continue;
-            printf("ACCEPTED: fd=%d (select=%d)\n", fd, result);
+
             // SERVER MUST ACCEPT CLIENT
             if (fd == server_sockfd) acceptClient(fd);
             
@@ -81,49 +78,12 @@ void acceptClient(int fd) {
 void deleteClient(int fd) {
     close(fd);
     FD_CLR(fd, &readfds);
-    printf("[SERVER]: Removing client on fd=%d\n", fd);
+    printf("[SERVER]: Removinf client on fd=%d\n", fd);
 }
 
 
 void attendClient(int fd) {
-    printf("[SERVER]: Attending client on fd=%d\n", fd);
     /* REQUEST AND RESPONSE */
-    int number=0, divisors[100], count=0;
-    char *message; 
 
-    read(fd, &number, sizeof(number));
-    divisorsOf(number, divisors, &count);
-    printf("%d, count=%d\n", number, count);
-    
-    // Prime number
-    if (count == 0) {
-        message = "es número primo";
-        printf("%s\n", message);
-        write(fd, message, strlen(message));
-    }
-
-    // Not prime number
-    else {
-        message = "no es número primo porque tiene los siguientes divisores:\n";
-        printf("%s\n", message);
-        write(fd, message, strlen(message));
-        
-        char aux[10];
-        for (int i=0; i<count; i++) {
-            sprintf(aux, "%d\n", divisors[i]);
-            printf("%s", aux);
-            write(fd, aux, sizeof(aux));
-        }   printf("\n");
-    }
-
-    // deleteClient(fd);
     /* ******************** */
-}
-
-void divisorsOf(int number, int* divisors, int* count) {
-    for (int i=2; i<=(number/2); i++)
-        if (number%i == 0) {
-            divisors[*count] = i;
-            *count += 1;
-        }
 }
