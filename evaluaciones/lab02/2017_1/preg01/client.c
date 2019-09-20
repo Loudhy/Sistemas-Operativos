@@ -38,18 +38,14 @@ int main(int argc, char const *argv[]) {
     int nreads = 0;
     while (TRUE) {
         
-        sleep(5);
-        // int err = ioctl(sockfd, FIONREAD, &nreads);
-        // printf("[CLIENT]: read from [%d] - bytes: %d (error=%d)\n", sockfd, nreads, err);
-        // if (nreads <= 0) {
-        //    break;
-        // }
+        memset(message, 0, sizeof(message));
         
-
-        nreads = read(sockfd, message, 10);
-        if (nreads <= 0) break;
+        nreads = read(sockfd, message, 100);
+        printf("strlen=%ld", strlen(message));
+        if (strncmp(message, "END", 3)==0) break;
+        message[nreads] = 0;
+        
         printf("[CLIENT]: from server => %s\n", message);
-        
     }
     /* **************** */
 

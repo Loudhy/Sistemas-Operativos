@@ -25,6 +25,7 @@ fd_set readfds, testfds;
 int main() {
     
     int result;
+    struct timeval timeout;
 
     server_sockfd = socket(AF_INET, SOCK_STREAM, 0);
     server_address.sin_family = AF_INET;
@@ -42,20 +43,25 @@ int main() {
         int fd, nread;
 
         testfds = readfds;
-        result = select(FD_SETSIZE, &testfds, NULL, NULL, (struct timeval*) NULL);
-        if (result < 1) { perror("[ERROR] server cannot select"); exit(EXIT_FAILURE); }
-    
+        timeout.tv_sec = 2;
+        timeout.tv_usec = 500000;
+
+        printf("[SERVER-ANALISIS]: selecting\n");
+
+        result = select(FD_SETSIZE, &testfds, NULL, NULL, (struct timeval*) &timeout);
+        if (result == -1) { perror("[ERROR] server cannot select"); exit(EXIT_FAILURE); }
+
+        printf("[SERVER-ANALISIS]: after => result %d\n", result);
+
         for (fd=0; fd<FD_SETSIZE; fd++) {
             // if not fd in set, avoid proccessing it
-            // printf("fd=%d\n", fd);
             if (!FD_ISSET(fd, &testfds)) continue;
-            printf("ACCEPTED: fd=%d (select=%d)\n", fd, result);
             // SERVER MUST ACCEPT CLIENT
             if (fd == server_sockfd) acceptClient(fd);
             
             else {
                 ioctl(fd, FIONREAD, &nread);
-                
+            
                 // DELETE CLIENT WHO DOESNT WRITE
                 if (nread == 0) deleteClient(fd);
 
@@ -93,29 +99,27 @@ void attendClient(int fd) {
 
     read(fd, &number, sizeof(number));
     divisorsOf(number, divisors, &count);
-    printf("%d, count=%d\n", number, count);
     
     // Prime number
     if (count == 0) {
-        message = "es número primo";
-        printf("%s\n", message);
+        message = "es número primo\n";
         write(fd, message, strlen(message));
     }
 
     // Not prime number
     else {
         message = "no es número primo porque tiene los siguientes divisores:\n";
-        printf("%s\n", message);
         write(fd, message, strlen(message));
         
-        char aux[10];
-        for (int i=0; i<count; i++) {
-            sprintf(aux, "%d\n", divisors[i]);
-            printf("%s", aux);
-            write(fd, aux, sizeof(aux));
-        }   printf("\n");
+        char aux[100];
+        memset(aux, 0, sizeof(aux));
+        
+        for (int i=0; i<count; i++) sprintf(aux, "%s - %d", aux, divisors[i]);
+        aux[strlen(aux)] = 0;
+        write(fd, aux, strlen(aux));
     }
 
+    write(fd, "END", 3);
     // deleteClient(fd);
     /* ******************** */
 }
