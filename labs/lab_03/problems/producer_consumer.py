@@ -51,17 +51,17 @@ class Buffer(object):
         return str(self.container)
 
 
-def wait_for_item():
-    for i in range(10):
-        time.sleep(5-i/2)
+def wait_for_item(limit):
+    for i in range(limit):
         yield Item(i, "it's a message")
 
 
 def producer(limit=5):
-    itemrator = wait_for_item()
+    itemrator = wait_for_item(limit)
 
     for _ in range(limit):
         item = next(itemrator)
+        spaces.acquire()
         mutex.acquire()
         buffer.add_item(item)
         print(f"BUFFER PRODUCER: {buffer}", flush=True)
@@ -76,16 +76,17 @@ def consumer(limit=5):
         item = buffer.get_item()
         print(f"BUFFER CONSUMER: {buffer}", flush=True)
         mutex.release()
-
+        spaces.release()
         item.process()
 
 
 buffer = Buffer(size=10)
-mutex = th.Semaphore(1)
-items = th.Semaphore(0)
+mutex  = th.Semaphore(1)
+items  = th.Semaphore(0)
+spaces = th.Semaphore(buffer.size)
 
-th_consumer = th.Thread(target=producer, args=(10,))
-th_producer = th.Thread(target=consumer, args=(10,))
+th_consumer = th.Thread(target=producer, args=(30,))
+th_producer = th.Thread(target=consumer, args=(30,))
 
 th_consumer.start()
 th_producer.start()
