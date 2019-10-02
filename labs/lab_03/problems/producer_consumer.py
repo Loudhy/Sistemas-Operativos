@@ -2,7 +2,7 @@
 THE PRODUCER - CONSUMER PROBLEM
 
 - While an item is being added to or removed from the buffer,
-the buffer is in an incossitent state. Therefore, threads must
+the buffer is in an inconsistent state. Therefore, threads must
 have exlusive access to the buffer.
 
 - If a consumer thread arrives while the buffer is empty, it
