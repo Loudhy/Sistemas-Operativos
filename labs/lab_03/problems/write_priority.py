@@ -37,14 +37,17 @@ def writing(count):
 
 def writer():
     for i in range(20):
-        
-        writing(i)
+        writer_switch.lock(no_readers)
+        with no_writers:
+            writing(i)
+        writer_switch.unlock(no_readers)
+
 
 def reader(id):
     with no_readers:
-        reader_switch.lock()
-
+        reader_switch.lock(no_writers)
     reading(id)
+    reader_switch.unlock(no_writers)
 
 
 # useful variables
