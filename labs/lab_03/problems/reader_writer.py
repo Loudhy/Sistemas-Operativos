@@ -15,27 +15,68 @@ other categories)
 """
 
 import threading as th
+import time
 
 
-def reading():
-    pass
+
+def waste_time(cycles=1_000_000):
+    for _ in range(cycles):
+        pass
+
+def reading(id):
+    print(f"[READER {id}]: {dashboard}", flush=True)
+    time.sleep(0.01)
 
 
-def writirg():
-    pass
+def writing(count):
+    dashboard.append(count)
+    print(f"[WRITER  ]: {dashboard}", flush=True)
+    time.sleep(0.5)
 
 
 def writer():
-    pass
+    for i in range(20):
+        waste_time()
+        room_empty.acquire()
+        writing(i)
+        room_empty.release()
 
 
-def reader():
-    pass
+def reader(id):
+    global n_readers
+    mutex.acquire()
+    n_readers += 1
+    if n_readers == 1:
+        room_empty.acquire()
+    mutex.release()
+    
+    reading(id)
+    
+    mutex.acquire()
+    n_readers -= 1
+    if n_readers == 0:
+        room_empty.release()
+    mutex.release()
 
+# useful variables
+dashboard = []
+n_readers = 0
+mutex = th.Semaphore(1)
+room_empty = th.Semaphore(1)
 
-writer_thread  = th.Thread(target=writing)
+# creating threads
+writer_thread  = th.Thread(target=writer)
 readers_thread = []
+for i in range(10):
+    readers_thread.append(th.Thread(target=reader, args=(i,)))
 
-for _ in range(10):
-    readers_thread.append(th.Thread(target=reading))
 
+# start
+writer_thread.start()
+for i in range(10):
+    readers_thread[i].start()
+
+# join
+writer_thread.join()
+for i in range(10):
+    readers_thread[i].join()
