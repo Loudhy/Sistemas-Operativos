@@ -37,26 +37,23 @@ def writing(count):
 def writer():
     for i in range(20):
         waste_time()
-        room_empty.acquire()
-        writing(i)
-        room_empty.release()
+        with room_empty:
+            writing(i)
 
 
 def reader(id):
     global n_readers
-    mutex.acquire()
-    n_readers += 1
-    if n_readers == 1:
-        room_empty.acquire()
-    mutex.release()
+    with mutex:
+        n_readers += 1
+        if n_readers == 1:
+            room_empty.acquire()
     
     reading(id)
     
-    mutex.acquire()
-    n_readers -= 1
-    if n_readers == 0:
-        room_empty.release()
-    mutex.release()
+    with mutex:
+        n_readers -= 1
+        if n_readers == 0:
+            room_empty.release()
 
 # useful variables
 dashboard = []
